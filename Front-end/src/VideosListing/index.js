@@ -14,11 +14,11 @@ const VideosListingComponent = (props) => {
       const result = await getVideosMeta(refreshToken)
       message.success('loaded videos information')
       console.log(result)
+      setVideos(result)
     } catch(err){
       console.log(err)
     }
 
-    // call set videos
   }
 
   React.useEffect( () => {
@@ -27,22 +27,16 @@ const VideosListingComponent = (props) => {
 
   return (
     <div className="video-listing-container">
-      <Row gutter={16}>
-        <Col span={8}>
-          <Card title="Card title 1" bordered={false}>
-            Card content 1
-          </Card>
-        </Col>
-        <Col span={8}>
-          <Card title="Card title 2" bordered={false}>
-            Card content 2
-          </Card>
-        </Col>
-        <Col span={8}>
-          <Card title="Card title 3" bordered={false}>
-            Card content 3
-          </Card>
-        </Col>
+      <Row gutter={[16, 16]}>
+        {
+          videos.map( videoEvent => (
+            <Col span={8}>
+              <Card title={videoEvent.cameraName} bordered={false}>
+                {videoEvent.created_at}
+              </Card>
+            </Col>
+          ))
+        }
       </Row>
     </div>
   )

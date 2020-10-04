@@ -15,7 +15,7 @@ const getVideoMetaData = async (refreshToken) => {
   // get all cameras of first location
 
   const allEventsPromises = location.cameras.map( (cam) => {
-    return cam.getEvents({ limit: 5 })
+    return cam.getEvents({ limit: 6 })
   })
 
   console.log(location.cameras[0])
