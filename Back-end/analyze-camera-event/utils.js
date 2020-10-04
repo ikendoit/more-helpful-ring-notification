@@ -18,6 +18,8 @@ const getVideoMetaData = async (refreshToken) => {
     return cam.getEvents({ limit: 6 })
   })
 
+  console.log(location.cameras[0])
+
   const allEvents = await Promise.all(allEventsPromises)
   const allEventsFlat = allEvents.map((e, i) =>
     // enrich with camera name
@@ -28,13 +30,6 @@ const getVideoMetaData = async (refreshToken) => {
 
     // flatten out into 1 array with all events
   ).flat()
-
-  // testing
-  const testevent = allEventsFlat[0].ding_id_str
-  console.log(testevent)
-  const url = await location.cameras[0].getRecordingUrl(testevent, {transcoded: true})
-  console.log(url)
-  // end testing
 
   return allEventsFlat;
 }
