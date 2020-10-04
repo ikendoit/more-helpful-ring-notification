@@ -1,6 +1,7 @@
 const { RingRestClient } = require( 'ring-client-api/lib/api/rest-client' )
 const configMock = require('./env')
 
+// 1FA: authenticate with username and password
 const firstFAAuth = async (username, password) => {
 
   // get 2FA awaiting-confirmation client
@@ -25,17 +26,20 @@ const firstFAAuth = async (username, password) => {
 
 }
 
-const secondFAAuth = async (faCode) => {
+// 2FA: authenticate with 2fa-code
+const secondFAAuth = async (currentClient, faCode) => {
 
   try {
-    return await RingApiClient.client.getAuth(faCode)
+    const auth = await currentClient.getAuth(faCode)
+    return auth.refresh_token;
   }  catch(err) {
     console.log('Incorrect 2fa code. Please try again.')
+    throw err;
   }
 
 }
 
-// MOCK methods
+// MOCK methods: 1FA-good, 1FA-need-code, 2FA-good
 const mockFirstNeed = (username, password) => {
   return {
     client: {},
@@ -47,8 +51,14 @@ const mockFirstGood = (username, password) => {
     refreshToken: configMock.refreshToken
   }
 }
+const mockSecondGood = (currentClient, faCode) => {
+  return {
+    refreshToken: configMock.refreshToken
+  }
+}
 
+// export
 module.exports = {
   firstFAAuth: mockFirstGood,
-  secondFAAuth
+  secondFAAuth: mockSecondGood
 }

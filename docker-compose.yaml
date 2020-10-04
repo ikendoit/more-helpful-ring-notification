@@ -1,5 +1,7 @@
 version: '3'
 
+# For local development 
+# 3 back ends services = 3 ports: 8080, 8081, 8082 
 services:
   auth-component:
     build:
@@ -8,6 +10,16 @@ services:
     volumes:
       - ./Back-end/auth-component/:/usr/src/app
     ports:
-      - "8080:8080"
+      - "8080:80"
+
+  get-videos-meta-component:
+    build:
+      context: Back-end/auth-component
+      dockerfile: Dockerfile
+    volumes:
+      - ./Back-end/auth-component/:/usr/src/app
+    ports:
+      - "8081:80"
+
 
   # TODO: add front-end here
