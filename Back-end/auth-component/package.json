@@ -2,13 +2,23 @@
   "name": "auth-component",
   "version": "1.0.0",
   "description": "",
+  "private": true,
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index.js",
+    "test": "mocha test/index.test.js --exit",
+    "lint": "eslint '**/*.js'",
+    "fix": "eslint --fix '**/*.js'"
   },
-  "author": "",
-  "license": "ISC",
   "dependencies": {
+    "express": "^4.17.1",
     "ring-client-api": "^9.10.0"
-  }
+  },
+  "devDependencies": {
+    "got": "^11.0.0",
+    "mocha": "^8.0.0",
+    "supertest": "^4.0.2"
+  },
+  "author": "Ken Nguyen",
+  "license": "ISC"
 }

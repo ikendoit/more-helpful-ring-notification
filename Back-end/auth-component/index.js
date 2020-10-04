@@ -1,19 +1,22 @@
-const ringClientApi = require("ring-client-api")
+const {
+  RingApi,
+  firstFAAuth,
+  secondFAAuth
+} = require("./utils")
 
-const userDataEnv = require("./env") // this should be git-ignored
+const express = require('express');
+const app = express();
 
-const main = (req, res) => {
+// array of {username, password}
+let allClientsWaiting2Fa = []
 
+app.get('/', (req, res) => {
+  console.log(req)
+  const name = process.env.NAME || 'World';
+  res.send(`Hello ${name}!`);
+});
 
-  // extract userData from req
-  const {username, password} = userDataEnv
-
-  // get refresh token
-  const refreshToken =
-
-
-  // return refresh token
-  return refreshToken
-
-
-}
+const port = 8080;
+app.listen(port, () => {
+  console.log(`helloworld: listening on port ${port}`);
+});

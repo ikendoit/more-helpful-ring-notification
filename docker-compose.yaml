@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+  auth-component:
+    build:
+      context: Back-end/auth-component
+      dockerfile: Dockerfile
+    volumes:
+      - ./Back-end/auth-component/:/usr/src/app
+    ports:
+      - "8080:8080"
+
+  # TODO: add front-end here

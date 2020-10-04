@@ -1,11 +1,9 @@
-
-
-
 Make components:
 
   - module Auth:
       Input: username + password
       Output: Refresh Token
+
 
   - module Video Meta:
       Input: Refresh token
@@ -21,7 +19,6 @@ Make components:
 
   - Front-end:
       CLI First to ensure it works locally.
-
       Make PWA Web-APP that can use Phone-Notification-push + Run in Background api
 
       - User Sign in
@@ -33,7 +30,7 @@ Make components:
 
 All component is done, then:
 
-  - deploy front-end on Firebase
+  - deploy front-end oFirebase
 
   - deploy back end components to Firebase
 
