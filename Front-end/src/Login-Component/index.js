@@ -1,10 +1,23 @@
 import React from 'react'
-import { Form, Input, Button, Checkbox } from 'antd';
+import { Form, Input, Button, Checkbox, message } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
+import { authenticate1stFA } from './utils'
 
 const LoginScreen = () => {
-  const onFinish = values => {
-    console.log('Received values of form: ', values);
+
+  const onFinish = async (values) => {
+    const {
+      username,
+      password,
+      remember
+    } = values;
+
+    message.info('authenticating')
+    const repsonse1stFA = await authenticate1stFA(username, password)
+
+    // store access token to local storage, until log out
+    //console.log('Received values of form: ', values);
+    //message.info('username, password received')
   };
 
   return (
