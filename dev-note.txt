@@ -1,0 +1,52 @@
+
+
+
+Make components:
+
+  - module Auth:
+      Input: username + password
+      Output: Refresh Token
+
+  - module Video Meta:
+      Input: Refresh token
+      Output: Videos list meta data last 3 days.
+
+  - module Video Analytic - Face Count:
+      Input:
+        Video ID of Ring
+        Refresh Token
+
+      Output:
+        Video Anlysis Result ( By Using Google ML technology: object detection or how-its-called  )
+
+  - Front-end:
+      CLI First to ensure it works locally.
+
+      Make PWA Web-APP that can use Phone-Notification-push + Run in Background api
+
+      - User Sign in
+      - User sees list of all videos past 3 days
+      - App auto select first video of each camera, and start analyzing them
+      - App show sample notification Count for each camera video.
+
+
+
+All component is done, then:
+
+  - deploy front-end on Firebase
+
+  - deploy back end components to Firebase
+
+  - Find way to connect front-end to back end seemlessly.
+
+  - Test and go
+
+
+
+
+Potentials:
+  - Make ML Widgets available within app-front-end, app-front-end will tell back-end what ML model to use to analyze video.
+  - get payload of each custom ML run => push to noti. as well as store it locally.
+
+
+
