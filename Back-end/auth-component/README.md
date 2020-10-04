@@ -11,9 +11,9 @@ export AUTH_COMPONENT_VERSION="v0.0.1"
 docker build . -t murn-auth-component:$AUTH_COMPONENT_VERSION
 
 # Deploying
+<Check GCP Cloud Run docs>
+...instruction here...
 
 # Testing
-docker run \
-  -p 8080:8080 \
-  -v ./=/usr/src/app \
-  murn-auth-component:$AUTH_COMPONENT_VERSION
+go to root,
+docker compose up (-d)

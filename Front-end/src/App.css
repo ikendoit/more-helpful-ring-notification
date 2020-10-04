@@ -28,3 +28,9 @@ code {
 .login-form-button {
   width: 100%;
 }
+
+.video-listing-container {
+  padding-top: 10%;
+  padding-left: 3%;
+  padding-right: 3%;
+}

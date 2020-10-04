@@ -3,7 +3,7 @@ import { Form, Input, Button, Checkbox, message } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import { authenticate1stFA } from './utils'
 
-const LoginScreen = () => {
+const LoginScreen = (props) => {
 
   const onFinish = async (values) => {
     const {
@@ -14,6 +14,14 @@ const LoginScreen = () => {
 
     message.info('authenticating')
     const repsonse1stFA = await authenticate1stFA(username, password)
+
+    if (repsonse1stFA.refreshToken) {
+      localStorage.setItem('refreshToken', repsonse1stFA.refreshToken)
+      props.setLoggedIn(true)
+    }
+
+
+    // NOT SUPPORTING 2FA currently, should, but can work with getting refresh token locally.
 
     // store access token to local storage, until log out
     //console.log('Received values of form: ', values);

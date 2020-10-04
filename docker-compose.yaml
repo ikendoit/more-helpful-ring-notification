@@ -14,10 +14,10 @@ services:
 
   get-videos-meta-component:
     build:
-      context: Back-end/auth-component
+      context: Back-end/get-videos-meta-component
       dockerfile: Dockerfile
     volumes:
-      - ./Back-end/auth-component/:/usr/src/app
+      - ./Back-end/get-videos-meta-component/:/usr/src/app
     ports:
       - "8081:80"
 

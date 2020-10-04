@@ -12,7 +12,8 @@ const authenticate1stFA = async (username, password) => {
 
   const responseJson = await responseRaw.json()
 
-  console.log(responseJson)
+  console.log('1st: ',responseJson)
+  return responseJson
 }
 
 const authenticate2ndFA = async (username, password, code_2fa) => {
@@ -25,5 +26,6 @@ const authenticate2ndFA = async (username, password, code_2fa) => {
 }
 
 export {
-  authenticate1stFA
+  authenticate1stFA,
+  authenticate2ndFA
 }

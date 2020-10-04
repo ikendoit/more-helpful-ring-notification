@@ -8,7 +8,7 @@ const Joi = require('joi')
 const app = express();
 app.use(express.json())
 
-app.post('/videoMetas', async (req, res)=> {
+app.post('/videosMeta', async (req, res)=> {
 
   // 1: validate
   // 2: get video metas
@@ -24,11 +24,10 @@ app.post('/videoMetas', async (req, res)=> {
   const { refreshToken } = req.body
 
   // step 2
-  const getVideosMetaResponse = getVideoMetaData(refreshToken)
+  const getVideosMetaResponse = await getVideoMetaData(refreshToken)
 
   // step 3
   res.send(getVideosMetaResponse)
-
 })
 
 
