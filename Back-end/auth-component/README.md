@@ -13,7 +13,6 @@ docker build . -t murn-auth-component:$AUTH_COMPONENT_VERSION
 # Deploying
 <Check GCP Cloud Run docs>
 ...instruction here...
-
 # Testing
 go to root,
 docker compose up (-d)

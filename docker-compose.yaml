@@ -21,5 +21,16 @@ services:
     ports:
       - "8081:80"
 
+  analyze-camera-event-component:
+    build:
+      context: Back-end/analyze-camera-event-component
+      dockerfile: Dockerfile
+    environment:
+      - GOOGLE_APPLICATION_CREDENTIALS=/root/.config/gcloud/application_default_credentials.json 
+    volumes:
+      - ./Back-end/analyze-camera-event-component/:/usr/src/app
+      - ~/.config/gcloud:/root/.config/gcloud # this component needs service account to upload to GCS bucket.
+    ports:
+      - "8082:80"
 
   # TODO: add front-end here

@@ -1,5 +1,6 @@
 const {
-  getVideoMetaData
+  getDownloadUrl,
+  uploadVideoToGCS
 } = require("./utils")
 const express = require('express');
 const bodyParser = require('body-parser')
@@ -20,22 +21,32 @@ app.post('/analyzeVideos', async (req, res)=> {
   const schema = Joi.object({
     refreshToken: Joi.string()
         .required(),
-    dingId: Joi.string()
-        .required()
+    dingIdStr: Joi.string()
+        .required(),
+    cameraName: Joi.string()
+        .required(),
   })
   schema.validate(req.body)
 
-  const { refreshToken } = req.body
+  const { refreshToken, dingIdStr, cameraName } = req.body
 
   // step 2
-  const getVideosMetaResponse = await getVideoMetaData(refreshToken)
+  const urlDownload = await getDownloadUrl(refreshToken, dingIdStr, cameraName)
+  const gcsFileName = await uploadVideoToGCS(urlDownload)
 
   // step 3
-  res.send(getVideosMetaResponse)
+  // analyze call with gcs link
+  let analyticsResult = {countHumans: 'I dont see none', countPets: 'looking petty'}
+
+  // step 4
+  res.send({
+    analyticsResult,
+    gcsFileName
+  })
 })
 
 
 const port = 80;
 app.listen(port, () => {
-  console.log(`video-meta: listening on port ${port}`);
+  console.log(`videos-analytics: listening on port ${port}`);
 });

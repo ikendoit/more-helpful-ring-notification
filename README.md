@@ -1,6 +1,7 @@
 WIP, please come back later, Github Adventurers.
 
 # Dev guide:
+gcloud auth application-default login
 
 front-end:
   npm start
