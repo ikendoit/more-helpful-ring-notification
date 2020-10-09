@@ -30,19 +30,25 @@ app.post('/analyzeVideos', async (req, res)=> {
 
   const { refreshToken, dingIdStr, cameraName } = req.body
 
-  // step 2
-  const urlDownload = await getDownloadUrl(refreshToken, dingIdStr, cameraName)
-  const gcsFileName = await uploadVideoToGCS(urlDownload)
+  try {
+    // step 2
+    const urlDownload = await getDownloadUrl(refreshToken, dingIdStr, cameraName)
+    const gcsFileName = await uploadVideoToGCS(urlDownload)
 
-  // step 3
-  // analyze call with gcs link
-  let analyticsResult = {countHumans: 'I dont see none', countPets: 'looking petty'}
+    // step 3
+    // analyze call with gcs link
+    let analyticsResult = {countHumans: 'I dont see none', countPets: 'looking petty'}
 
-  // step 4
-  res.send({
-    analyticsResult,
-    gcsFileName
-  })
+    // step 4
+    res.send({
+      analyticsResult,
+      gcsFileName
+    })
+
+  } catch(err) {
+    console.log(err)
+    res.error(err)
+  }
 })
 
 

@@ -31,7 +31,7 @@ const uploadVideoToGCS = async (url) => {
   // exposing this publicly for clarity and personal-branding,
   //     this bucket does not allow listing, only GET-object.
   //     Object life-cycle auto deletes object after certain time.
-  const storage = new storageClient.Storage({ projectId: 'ExplorerTank' }).bucket( 'ikenbucket-more-helpful-ring-notification' );
+  const storage = new storageClient.Storage({ projectId: 'ExplorerTank' }).bucket( 'ikenbucket-more-helpful-ring-notification-us-central' );
 
   const fileName = `${uuidv4()}.mp4`
 
@@ -40,7 +40,6 @@ const uploadVideoToGCS = async (url) => {
     fetch(url)
       .then( res => new Promise((resolve2, reject2) => {
 
-            console.log(res)
             const gcsStream = storage.file( fileName ).createWriteStream();
             res.body.pipe(gcsStream);
             res.body.on("end", resolve2);
