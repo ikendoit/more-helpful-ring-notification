@@ -1,6 +1,7 @@
 WIP, please come back later, Github Adventurers.
 
 This project is parked for now, until either [GCP Intelligence Video](https://cloud.google.com/video-intelligence) or [AWS Rekognition](https://aws.amazon.com/rekognition/) improves their pet-detection in videos for top-down angles ( as well as side-way angles )
+Let's look back at these products next year ( 2021 )
 
 Goal of this project:
 
