@@ -7,20 +7,21 @@ const fs = require("fs")
 
 const main  = async () => {
 
-  const gcsUri = 'gs://ikenbucket-more-helpful-ring-notification/3ba4c862-bab7-4760-88ea-53803de1487f.mp4';
+  const gcsUri = 'gs://ikenbucket-more-helpful-ring-notification-us-central/9962930c-807d-4f0c-9399-a51a416da9a3.mp4';
   //const gcsUri = 'gs://ikenbucket-more-helpful-ring-notification/cat.mp4';
 
   const request = {
     inputUri: gcsUri,
-    features: ['OBJECT_TRACKING'],
+    features: ['OBJECT_TRACKING', 'LABEL_DETECTION'],
   };
 
   // Detects labels in a video
   const [operation] = await client.annotateVideo(request);
   console.log('Waiting for operation to complete...');
-  const [operationResult] = await operation.promise();
+  const operationResults = await operation.promise();
+  const operationResult = operationResults[0]
 
-  fs.writeFileSync("./test-result.json", JSON.stringify(operationResult, null, 2))
+  fs.writeFileSync("./test-result.json", JSON.stringify(operationResults, null, 2))
 
   // Gets annotations for video
   const annotations = operationResult.annotationResults[0];
